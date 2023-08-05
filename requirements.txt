@@ -1,0 +1,6 @@
+The package requirements for the given Python program are:
+
+- requests
+- numpy
+- beautifulsoup4
+- scikit-learn
