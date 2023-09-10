@@ -31,8 +31,10 @@ class EcoFriendlyProductRecommendation:
         product_elements = soup.select(".product")
         for product_element in product_elements:
             name = product_element.select_one(".name").text.strip()
-            description = product_element.select_one(".description").text.strip()
-            ratings = float(product_element.select_one(".ratings").text.strip())
+            description = product_element.select_one(
+                ".description").text.strip()
+            ratings = float(product_element.select_one(
+                ".ratings").text.strip())
             reviews = []
             review_elements = product_element.select(".review")
             for review_element in review_elements:
@@ -51,8 +53,10 @@ class EcoFriendlyProductRecommendation:
             product.sustainable_features = labels[i]
 
     def generate_recommendations(self, user_preferences):
-        user_preferences_vector = self.tfidf_vectorizer.transform([user_preferences])
-        product_scores = np.dot(user_preferences_vector, self.tfidf_matrix.T).toarray()[0]
+        user_preferences_vector = self.tfidf_vectorizer.transform(
+            [user_preferences])
+        product_scores = np.dot(user_preferences_vector,
+                                self.tfidf_matrix.T).toarray()[0]
         sorted_indices = np.argsort(product_scores)[::-1]
         recommendations = [self.products[i] for i in sorted_indices]
         return recommendations
@@ -68,7 +72,8 @@ def main():
     eco_friendly_recommendation.analyze_product_data()
 
     user_preferences = input("Please enter your sustainability preferences: ")
-    recommendations = eco_friendly_recommendation.generate_recommendations(user_preferences)
+    recommendations = eco_friendly_recommendation.generate_recommendations(
+        user_preferences)
 
     for i, recommendation in enumerate(recommendations):
         print(f"\nRecommendation {i+1}:")
