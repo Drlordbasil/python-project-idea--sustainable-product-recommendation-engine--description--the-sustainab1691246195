@@ -62,6 +62,7 @@ class EcoFriendlyProductRecommendation:
         return recommendations
 
     def update_product_data(self):
+        # Nothing to update at the moment
         pass
 
 
